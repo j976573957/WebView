@@ -1,0 +1,42 @@
+<!--这里是 html 代码-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+</head>
+<body>
+<div style="margin-top: 50px">
+<h3>与H5 交互的那点事
+</h3>
+<input type="button"value="OpenCamera" onclick="client.openCamera()">
+</div>
+<div style="margin-top: 20px">
+<input type="button"value="Share" onclick="jsShare()">
+</div>
+<div style="margin-top: 20px">
+<input type="button"value="WKOpenCamera" onclick="WKOpenCamera()">
+</div>
+<div style="margin-top: 20px">
+<h3>拦截协议
+</h3>
+<button><a href="app://showAlert">显示弹窗</a></button>
+<button><a href="app://presentVC">显示控制器</a></button>
+</div>
+<script>
+var jsShare =  function(json){
+json = JSON.stringify({
+'title':'标题',
+'desc': '信息',
+'shareUrl':'http://www.jianshu.com'
+});
+window.webkit.messageHandlers.jsWkShare.postMessage(json);
+<!--如果是UIWebView 调用 jsShare() 方法 注释上面👆这句 -->
+client.share(json);
+}
+var WKOpenCamera = function(){
+window.webkit.messageHandlers.WKOpenCamera.postMessage('WKOpenCamera');
+}
+</script>
+</body>
+</html>
+
