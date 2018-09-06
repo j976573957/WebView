@@ -2,7 +2,7 @@
 //  WKWebViewController.m
 //  WebView-Test
 //
-//  Created by Loovee on 2018/6/7.
+//  Created by xxxx on 2018/6/7.
 //  Copyright © 2018年 AJ.com. All rights reserved.
 //
 
@@ -47,7 +47,7 @@
 
 - (NSURLRequest *)urlRequest
 {
-    NSString *urlStr = @"http://ksmt.loovee.com/share_test/index";
+    NSString *urlStr = @"http://ksmt.xxxx.com/share_test/index";
     NSURL *url = [NSURL URLWithString:urlStr];
     NSMutableDictionary *dict=[NSMutableDictionary dictionary];
     
@@ -60,7 +60,7 @@
     NSTimeInterval a=[dat timeIntervalSince1970];
     NSString *timeString = [NSString stringWithFormat:@"%0.f", a];//转为字符型
     NSInteger rand10_num = arc4random()%9000000000 + 1000000000;
-    NSString *signFirstStr = [NSString stringWithFormat:@"%@%@%@",timeString,@"123",@"DM23985loovee"];
+    NSString *signFirstStr = [NSString stringWithFormat:@"%@%@%@",timeString,@"123",@"xxxx"];
     NSString * md5First = [signFirstStr md5];
     NSString * singSecStr = [NSString stringWithFormat:@"%@%zd",md5First,rand10_num];
     NSString * md5SignStr = [singSecStr md5];
@@ -105,10 +105,11 @@
     [contentCtrl addScriptMessageHandler:[[WeakScriptDelegate alloc] initWithDelegate:self] name:@"WKOpenCamera"];
     WKWebViewConfiguration *conf = [[WKWebViewConfiguration alloc] init];
     conf.userContentController = contentCtrl;
-    //适应
+    //适应屏幕
     NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
-    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     [contentCtrl addUserScript:wkUScript];
+
     WKWebView *web = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) configuration:conf];
     NSString *urlPath = [[NSBundle mainBundle] pathForResource:@"java.html" ofType:nil];
     NSString *htmlStr = [NSString stringWithContentsOfFile:urlPath encoding:NSUTF8StringEncoding error:nil];
