@@ -22,6 +22,17 @@
 <button><a href="app://showAlert">显示弹窗</a></button>
 <button><a href="app://presentVC">显示控制器</a></button>
 </div>
+<!--这里是输入框-->
+<div style="margin-top: 20px">
+    <form action="form_action.asp" method="get">
+        First name: <input type="text" name="fname" />
+    </form>
+    <form action="form_action.asp" method="get">
+        Last name: <input type="text" name="lname" />
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+<!--客户端 & JS 交互h方式-->
 <script>
 var jsShare =  function(json){
 json = JSON.stringify({
